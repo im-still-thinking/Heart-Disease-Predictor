@@ -1,0 +1,219 @@
+<html>
+
+    <head>
+        <title>Check for Heart Disease</title>
+        <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    </head>
+
+    <style>
+        body{
+            background-color: #f5f5f5;
+            background-image: url(/static/heart1.jpeg);
+            background-repeat: no-repeat;
+            background-size: 850px 840px;
+            background-attachment: fixed
+        }
+
+        h1.relative{
+            font-family: 'Ubuntu';font-size: 40px;
+            text-align: left;
+            color: black;
+            position: sticky;
+            left: 900px;
+            top: -5px;
+            width: 450px;
+            height: 50px;
+            padding: 20px 101px;
+            background-color: #c0c0c0;
+            box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+        }
+
+        .bottom-three {
+            margin-bottom: 1cm;
+        }
+
+        select:invalid{
+            color: gray 50%;
+        }
+        option{
+            color: black;
+        }
+
+        ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+            color: black;
+            opacity: 1; /* Firefox */
+        }
+        
+        :-ms-input-placeholder { /* Internet Explorer 10-11 */
+            color: black;
+        }
+        
+        ::-ms-input-placeholder { /* Microsoft Edge */
+            color: black;
+        }
+
+        input[type=number] {
+            background-color: #f1f1f1;
+            width: 40%;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            margin: 8px 870px;
+            box-sizing: border-box;
+        }
+
+        select {
+            width: 70%;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            margin: 8px 870px;
+            background-color: #f1f1f1;
+        }
+
+        .button {
+            display: inline-block;
+            width: 40%;
+            padding: 15px 25px;
+            margin: 8px 870px;
+            font-size: 24px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            outline: none;
+            color: #fff;
+            background-color: #1e90ff;
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 9px #999;
+        }
+  
+        .button:hover {background-color: #4f86f7}
+        
+        .button:active {
+            background-color: #1e90ff;
+            box-shadow: 0 5px #666;
+            transform: translateY(4px);
+        }
+
+    </style>
+
+    <body>
+        <h1 class = "relative">Heart Disease Predictor</h1>
+        <p class = "bottom-three"></p>
+        <form action="{{ url_for('predict')}}" method="post">
+            <input type="number" id="bmi" name="bmi" placeholder="BMI">
+
+            <select id="smoking" name="smoking" aria-placeholder="Smoking">
+                <option value="" disabled selected>Smoking</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+
+            <select id="alcoholdrinking" name="alcoholdrinking">
+                <option value="" disabled selected>Alcohol / Drinking</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+
+            <select id="stroke" name="stroke">
+                <option value="" disabled selected>Stroke</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+
+            <input type="number" id="phys" name="physical_health" placeholder="Physical Health">
+
+            <input type="number" id="men" name="mental_health" placeholder="Mental Health">
+
+            <select id="diffw" name="diff_walking">
+                <option value="" disabled selected>Diff Walking</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+
+            <select id="sex" name="sex">
+                <option value="" disabled selected>Sex</option>
+                <option value="Female">Female</option>
+                <option value="Male">Male</option>
+            </select>
+
+            <select id="age" name="age">
+                <option value="" disabled selected>Age Category</option>
+                <option value="18-24">18 - 24</option>
+                <option value="25-29">25 - 29</option>
+                <option value="30-34">30 - 34</option>
+                <option value="35-39">35 - 29</option>
+                <option value="40-44">40 - 44</option>
+                <option value="45-49">45 - 49</option>
+                <option value="50-54">50 - 54</option>
+                <option value="55-59">55 - 59</option>
+                <option value="60-64">60 - 64</option>
+                <option value="65-69">65 - 69</option>
+                <option value="70-74">70 - 74</option>
+                <option value="75-79">75 - 79</option>
+                <option value="80 or older">80 or older</option>
+            </select>
+
+            <select id="race" name="race">
+                <option value="" disabled selected>Race</option>
+                <option value="White">White</option>
+                <option value="Black">Black</option>
+                <option value="Asian">Asian</option>
+                <option value="American Indian/Alaskan Native">American Indian/Alaskan Native</option>
+                <option value="Hispanic">Hispanic</option>
+                <option value="Other">Other</option>
+            </select>
+
+            <select id="diab" name="diabetic">
+                <option value="" disabled selected>Diabetic</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+                <option value="No, borderline diabetes">No, Borderline Diabetes</option>
+                <option value="Yes (during pregnancy)">Yes (during pregnancy)</option>
+            </select>
+
+            <select id="physact" name="physical_activity">
+                <option value="" disabled selected>Physical Activity</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+
+            <select id="gen" name="gen_health">
+                <option value="" disabled selected>Gen Health</option>
+                <option value="Poor">Poor</option>
+                <option value="Fair">Fair</option>
+                <option value="Good">Good</option>
+                <option value="Very good">Very good</option> 
+                <option value="Excellent">Excellent</option>
+            </select>
+
+            <input type="number" id="sleep" name="sleep_time" placeholder="Sleep Time">
+
+            <select id="asthma" name="asthma">
+                <option value="" disabled selected>Asthma</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+
+            <select id="kid" name="kidney_disease">
+                <option value="" disabled selected>Kidney Disease</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+
+            <select id="skin" name="skin_cancer">
+                <option value="" disabled selected>Skin Cancer</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+            <p class = "bottom-three"></p>
+            <button type = "submit" class="button">Predict</button>
+        
+        </form>
+        <p class = "bottom-three"></p>
+        <b>{{ prediction_ans }}</b>
+    </body>
+
+
+</html>
