@@ -1,4 +1,5 @@
 # Imports
+from urllib.request import Request
 from flask import Flask, request, render_template
 import pandas as pd
 import numpy as np
@@ -58,8 +59,12 @@ def home():
 @app.route('/predict', methods = ['POST'])
 def predict():
 
+    form_el = ['bmi', 'smoking', 'alcoholdrinking', 'stroke', 'physical_health', 'mental_health', 'diff_walking', 'sex', 'age', 'race', 'diabetic', 'physical_activity', 'gen_health', 'sleep_time', 'asthma', 'kidney_disease', 'skin_cancer']
     val1 = [0 for _ in range(35)]
-    val2 = [i for i in request.form.values()]
+    val2 = []
+    for i in form_el:
+        val2.append(request.form[i])
+
 
     new_data1 = pd.DataFrame(dict(zip(cols1, val1)), columns = cols1, index = [0])
     new_data2 = pd.DataFrame(dict(zip(cols2, val2)), columns = cols2, index = [0])
@@ -68,7 +73,8 @@ def predict():
     new_data2 = pd.get_dummies(new_data2, columns = one_hot)
     new_data1.loc[:, list(new_data1.columns)] = new_data2.loc[:, list(new_data2.columns)]
     new_data1 = new_data1.fillna(0)
-    
+
+
     new_data1 = new_data1.astype({'BMI' : float, 'Smoking' : int,
     'AlcoholDrinking' : int,
     'Stroke' : int,
@@ -104,11 +110,8 @@ def predict():
     'Race_Other' : int,
     'Race_White' : int})
 
-    print(new_data1['Sex_Male'])
-    print(new_data1['Sex_Female'])
-
+   
     prediction = heart_model.predict(new_data1)
-    print(prediction)
     if prediction == 1:
         ans = 'You have heart disease'
     elif prediction == 0:
