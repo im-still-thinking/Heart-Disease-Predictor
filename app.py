@@ -116,3 +116,7 @@ def predict():
     return render_template('Templates/index.html', prediction_ans = ans)
 
 
+if __name__ == '__main__':
+    app.run(debug=True)
+
+
