@@ -53,7 +53,7 @@ cols2 = ['BMI', 'Smoking', 'AlcoholDrinking', 'Stroke', 'PhysicalHealth', 'Menta
 
 @app.route('/')
 def home():
-    return render_template("Templates/index.html")
+    return render_template("index.html")
 
 @app.route('/predict', methods = ['POST'])
 def predict():
@@ -113,7 +113,7 @@ def predict():
     elif prediction == 0:
         ans = "You don't have heart disease"
 
-    return render_template('Templates/index.html', prediction_ans = ans)
+    return render_template('index.html', prediction_ans = ans)
 
 
 if __name__ == '__main__':
