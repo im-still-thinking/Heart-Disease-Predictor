@@ -96,30 +96,37 @@
             transform: translateY(4px);
         }
 
+        .preds{
+            text-align: right;
+            padding: 12px 20px;
+            margin: 8px 870px;
+            font-size: 25px;
+        }
+
     </style>
 
     <body>
         <h1 class = "relative">Heart Disease Predictor</h1>
         <p class = "bottom-three"></p>
         <form action="{{ url_for('predict')}}" method="post">
-            <input type="number" id="bmi" name="bmi" placeholder="BMI">
+            <input type="number" step="0.01" id="bmi" name="bmi" placeholder="BMI">
 
             <select id="smoking" name="smoking" aria-placeholder="Smoking">
                 <option value="" disabled selected>Smoking</option>
-                <option value="Yes">Yes</option>
-                <option value="No">No</option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
             </select>
 
             <select id="alcoholdrinking" name="alcoholdrinking">
                 <option value="" disabled selected>Alcohol / Drinking</option>
-                <option value="Yes">Yes</option>
-                <option value="No">No</option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
             </select>
 
             <select id="stroke" name="stroke">
                 <option value="" disabled selected>Stroke</option>
-                <option value="Yes">Yes</option>
-                <option value="No">No</option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
             </select>
 
             <input type="number" id="phys" name="physical_health" placeholder="Physical Health">
@@ -128,8 +135,8 @@
 
             <select id="diffw" name="diff_walking">
                 <option value="" disabled selected>Diff Walking</option>
-                <option value="Yes">Yes</option>
-                <option value="No">No</option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
             </select>
 
             <select id="sex" name="sex">
@@ -167,53 +174,52 @@
 
             <select id="diab" name="diabetic">
                 <option value="" disabled selected>Diabetic</option>
-                <option value="Yes">Yes</option>
-                <option value="No">No</option>
-                <option value="No, borderline diabetes">No, Borderline Diabetes</option>
-                <option value="Yes (during pregnancy)">Yes (during pregnancy)</option>
+                <option value="2">Yes</option>
+                <option value="0">No</option>
+                <option value="1">No, Borderline Diabetes</option>
+                <option value="3">Yes (during pregnancy)</option>
             </select>
 
             <select id="physact" name="physical_activity">
                 <option value="" disabled selected>Physical Activity</option>
-                <option value="Yes">Yes</option>
-                <option value="No">No</option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
             </select>
 
             <select id="gen" name="gen_health">
                 <option value="" disabled selected>Gen Health</option>
-                <option value="Poor">Poor</option>
-                <option value="Fair">Fair</option>
-                <option value="Good">Good</option>
-                <option value="Very good">Very good</option> 
-                <option value="Excellent">Excellent</option>
+                <option value="0">Poor</option>
+                <option value="1">Fair</option>
+                <option value="2">Good</option>
+                <option value="3">Very good</option> 
+                <option value="4">Excellent</option>
             </select>
 
             <input type="number" id="sleep" name="sleep_time" placeholder="Sleep Time">
 
             <select id="asthma" name="asthma">
                 <option value="" disabled selected>Asthma</option>
-                <option value="Yes">Yes</option>
-                <option value="No">No</option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
             </select>
 
             <select id="kid" name="kidney_disease">
                 <option value="" disabled selected>Kidney Disease</option>
-                <option value="Yes">Yes</option>
-                <option value="No">No</option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
             </select>
 
             <select id="skin" name="skin_cancer">
                 <option value="" disabled selected>Skin Cancer</option>
-                <option value="Yes">Yes</option>
-                <option value="No">No</option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
             </select>
             <p class = "bottom-three"></p>
             <button type = "submit" class="button">Predict</button>
-        
-        </form>
-        <p class = "bottom-three"></p>
-        <b>{{ prediction_ans }}</b>
-    </body>
 
+            <p class = "bottom-three"></p>
+            <b class = "preds">{{ prediction_ans }}</b>
+        </form>
+    </body>
 
 </html>
