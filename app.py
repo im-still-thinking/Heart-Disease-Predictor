@@ -6,7 +6,7 @@ from sklearn import preprocessing
 import pickle
 
 #Initialize the Flask App
-app = Flask(__name__, template_folder='templates')
+app = Flask(__name__, template_folder = 'templates')
 
 #Loads pre - trained model
 heart_model = pickle.load(open('heart_model.pkl', 'rb'))
