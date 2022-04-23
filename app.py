@@ -68,7 +68,8 @@ def predict():
     new_data2 = pd.get_dummies(new_data2, columns = one_hot)
     new_data1.loc[:, list(new_data1.columns)] = new_data2.loc[:, list(new_data2.columns)]
     new_data1 = new_data1.fillna(0)
-    print(new_data1)
+    print(new_data1['Sex_Female'])
+    print(new_data1['Sex_Male'])
 
     new_data1 = new_data1.astype({'BMI' : float, 'Smoking' : int,
     'AlcoholDrinking' : int,
